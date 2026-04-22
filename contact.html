@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – Top Jeans Ltd.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .page-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+      padding: 60px 0 50px;
+      text-align: center;
+    }
+    .page-banner h1 { font-size: 34px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .page-banner p  { color: rgba(255,255,255,0.65); font-size: 15px; }
+    .breadcrumb { display:flex; gap:8px; justify-content:center; margin-bottom:16px; }
+    .breadcrumb a { color: var(--orange); font-size:13px; }
+    .breadcrumb span { color:rgba(255,255,255,0.4); font-size:13px; }
+
+    /* ── CONTACT HERO MAP BG ── */
+    .contact-map-bg {
+      position: relative; overflow: hidden;
+      background: #f0f4f8;
+    }
+    .contact-map-bg .map-bg-iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none; opacity: 0.25; pointer-events: none;
+      filter: grayscale(1);
+    }
+    .contact-map-bg .contact-overlay {
+      position: relative; z-index: 2;
+      padding: 60px 0;
+    }
+
+    /* ── CONTACT TOP 3-col ── */
+    .contact-top-grid {
+      display: grid; grid-template-columns: 280px 1fr 1fr; gap: 40px;
+      align-items: start;
+    }
+    .map-round-wrap {
+      display: flex; align-items: flex-start; justify-content: center; padding-top:10px;
+    }
+    .map-round {
+      width: 240px; height: 240px; border-radius: 50%;
+      overflow: hidden; border: 6px solid #fff;
+      box-shadow: 0 8px 32px rgba(27,42,74,0.2);
+      flex-shrink: 0;
+    }
+    .map-round iframe { width: 100%; height: 100%; border: none; }
+    .map-link {
+      text-align: center; margin-top: 12px;
+    }
+    .map-link a {
+      font-size: 12px; color: var(--blue); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+    .map-link a:hover { color: var(--orange); }
+
+    .contact-col h3 {
+      font-size: 19px; font-weight: 700; color: var(--navy);
+      margin-bottom: 18px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--orange);
+      display: inline-block;
+    }
+    .contact-info-row {
+      display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .contact-info-row .ci-icon {
+      font-size: 17px; flex-shrink: 0; margin-top: 1px;
+    }
+    .contact-info-row .ci-text { font-size: 14px; color: #374151; line-height: 1.5; }
+    .contact-info-row .ci-text strong { color: var(--navy); display: block; margin-bottom: 2px; }
+
+    .cp-box {
+      background: var(--white); padding: 18px 20px;
+      border-radius: 8px; margin-bottom: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.25s;
+    }
+    .cp-box:hover { border-color: var(--orange); box-shadow: 0 4px 16px rgba(232,114,42,0.1); }
+    .cp-box h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .cp-box .cp-pos { font-size: 12.5px; color: var(--grey); margin-bottom: 8px; }
+    .cp-box .cp-email {
+      font-size: 12.5px; color: var(--blue);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cp-box .cp-email:hover { color: var(--orange); }
+
+    /* ── DIVIDER ── */
+    .contact-divider {
+      border: none; border-top: 1px solid var(--border); margin: 50px 0 40px;
+    }
+
+    /* ── MERCH SECTION ── */
+    .merch-section-title {
+      font-size: 22px; font-weight: 700; color: var(--navy);
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .merch-section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── CONTACT FORM ── */
+    .contact-form-section {
+      background: var(--navy);
+      padding: 60px 0;
+    }
+    .contact-form-section .section-header h2 { color: #fff; }
+    .contact-form-section .section-header .label { color: var(--orange); }
+    .contact-form-section .section-header p { color: rgba(255,255,255,0.6); }
+    .cform {
+      max-width: 640px; margin: 0 auto;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: rgba(255,255,255,0.8); margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius);
+      color: #fff; font-size: 14px;
+      outline: none; transition: border-color 0.25s;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--orange); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select option { background: var(--navy); color: #fff; }
+    .btn-send {
+      width: 100%; padding: 14px;
+      background: var(--orange); color: #fff;
+      border: none; font-size: 15px; font-weight: 700;
+      border-radius: var(--radius); cursor: pointer;
+      text-transform: uppercase; letter-spacing: 1px;
+      transition: all 0.25s;
+    }
+    .btn-send:hover { background: var(--orange2); transform: translateY(-2px); }
+    .form-success {
+      display: none; background: rgba(52,211,153,0.15);
+      border: 1px solid rgba(52,211,153,0.4);
+      color: #6EE7B7; padding: 14px; border-radius: 6px;
+      text-align: center; margin-top: 14px; font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .contact-top-grid { grid-template-columns: 1fr; }
+      .map-round-wrap { display: none; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .merch-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html#home" class="nav-brand">
+      <img id="nav-logo" src="" alt="Top Jeans Ltd Logo">
+      <div class="brand-text">
+        <span class="name">TOP JEANS LTD</span>
+        <span class="tagline">A Trusted Name in RMG Sector</span>
+      </div>
+    </a>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="index.html#industries">Entities</a></li>
+      <li><a href="index.html#factory">Our Factory</a></li>
+      <li><a href="index.html#washing">Washing Plant</a></li>
+      <li><a href="index.html#management">Management</a></li>
+      <li><a href="index.html#buyers">Buyers</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+      <li class="career-btn"><a href="#career-form">Career</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <span style="color:rgba(255,255,255,0.7);">Contact Us</span>
+  </div>
+  <h1>Contact Us</h1>
+  <p>You can get in touch with us if you have any queries.</p>
+</div>
+
+<!-- CONTACT MAIN SECTION -->
+<div class="contact-map-bg">
+  <iframe class="map-bg-iframe"
+    src="https://www.google.com/maps?q=Tejgaon+Industrial+Area,+Dhaka,+Bangladesh&output=embed"
+    title="Map background">
+  </iframe>
+  <div class="contact-overlay">
+    <div class="container">
+      <div class="contact-top-grid">
+
+        <!-- MAP CIRCLE -->
+        <div>
+          <div class="map-round-wrap">
+            <div>
+              <div class="map-round">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.578!2d90.3961!3d23.7620!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a5e5e5e5e5%3A0x0!2sTejgaon+Industrial+Area!5e0!3m2!1sen!2sbd!4v1"
+                  allowfullscreen="" loading="lazy" title="Location Map">
+                </iframe>
+              </div>
+              <div class="map-link">
+                <a href="https://maps.google.com/?q=Tejgaon+Industrial+Area+Dhaka+Bangladesh" target="_blank">
+                  📍 Open in Maps ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HEAD OFFICE -->
+        <div class="contact-col">
+          <h3>Head Office</h3>
+          <div class="contact-info-row">
+            <span class="ci-icon">🏢</span>
+            <div class="ci-text">
+              <strong>Top Jeans Ltd. (Corporate)</strong>
+              House #31 (4th Floor), Road #29, Sector #07,<br>
+              Uttara, Dhaka-1230, Bangladesh
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci-icon">🏭</span>
+            <div class="ci-text">
+              <strong>Factory Address</strong>
+              617-618, Atipara, Uttarkhan, Uttara,<br>
+              Dhaka-1230, Bangladesh
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci-icon">📞</span>
+            <div class="ci-text">+880248954278</div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci-icon">📠</span>
+            <div class="ci-text">+880-2-8170623</div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci-icon">📧</span>
+            <div class="ci-text">
+              <a href="mailto:parimal@tjlbd.com" style="color:var(--blue);">parimal@tjlbd.com</a>
+            </div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci-icon">🌐</span>
+            <div class="ci-text">
+              <a href="http://www.tjlbd.com" style="color:var(--blue);" target="_blank">www.tjlbd.com</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT PERSONS -->
+        <div class="contact-col">
+          <h3>Contact Persons</h3>
+          <div class="cp-box">
+            <h4>Mr. Parimal Kumar Shom</h4>
+            <div class="cp-pos">Managing Director</div>
+            <a href="mailto:parimal@tjlbd.com" class="cp-email">✉ parimal@tjlbd.com</a>
+          </div>
+          <div class="cp-box">
+            <h4>Tarun Kumar Biswas</h4>
+            <div class="cp-pos">Executive Director</div>
+          </div>
+          <div class="cp-box">
+            <h4>Shamol Kumar Shom</h4>
+            <div class="cp-pos">Director</div>
+          </div>
+          <div class="cp-box">
+            <h4>Bikash Kumar Shom</h4>
+            <div class="cp-pos">IT Specialist</div>
+              <a href="mailto:bikash@tjlbd.com" class="cp-email">✉ bikash@tjlbd.com</a>
+          </div>
+        </div>
+
+      </div><!-- /contact-top-grid -->
+
+      <hr class="contact-divider">
+
+      <!-- MERCHANDISING CONTACTS -->
+      <div class="merch-section-title">Merchandising And Commercial </div>
+      <div class="merch-grid">
+        <div class="merch-person">
+          <h4>Rony Hasan</h4>
+          <div class="pos">Commercial Officer</div>
+          <a href="mailto: rony@tjlbd.com" class="email">✉ rony@tjlbd.com</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Enayet Hossain</h4>
+          <div class="pos">Executive Director</div>
+          <a href="mailto:enayet@tjlbd.com<" class="email">✉ enayet@tjlbd.com</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Syed Abu Md Saleh</h4>
+          <div class="pos">Executive Director</div>
+          <a href="mailto:saleh@tjlbd.com<" class="email">✉ saleh@htjlbd.com</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Md. Omar Ali Mollah</h4>
+          <div class="pos">Deputy General Manager</div>
+          <a href="mailto:omar@tjlbd.com<" class="email">✉ omar@tjlbd.com</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Nazmul Huda</h4>
+          <div class="pos">Deputy General Manager</div>
+          <a href="mailto:nazmul@tjlbd.com<" class="email">✉ nazmul@tjlbd.com<</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Mizanur Rahman</h4>
+          <div class="pos">Manager (H&amp;M)</div>
+          <a href="mailto:mizanur@tjlbd.com<" class="email">✉ mizanur@tjlbd.com<</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Tarik Aziz Rubel</h4>
+          <div class="pos">General Manager</div>
+          <a href="mailto:rubel@tjlbd.com<" class="email">✉ rubel@tjlbd.com</a>
+        </div>
+        <div class="merch-person">
+          <h4>Mr. Saiful Islam Shahin</h4>
+          <div class="pos">Assistant General Manager</div>
+          <a href="mailto:shahin@tjlbd.com<" class="email">✉ shahin@htjlbd.com<</a>
+        </div>
+      </div>
+
+    </div><!-- /container -->
+  </div><!-- /contact-overlay -->
+</div>
+
+<!-- CONTACT FORM -->
+<div class="contact-form-section" id="career-form">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:36px;">
+      <span class="label">Get In Touch</span>
+      <h2>Send Us a Message</h2>
+      <p>For business enquiries, buyer contacts, or career opportunities — fill the form below.</p>
+      <div class="title-bar"></div>
+    </div>
+    <div class="cform">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name *</label>
+          <input type="text" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" placeholder="email@example.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+880...">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option value="">Select Subject</option>
+            <option>Business Enquiry</option>
+            <option>Buyer Contact</option>
+            <option>Career / Job Application</option>
+            <option>Factory Visit</option>
+            <option>Others</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Your Message *</label>
+        <textarea placeholder="Write your message here..." required></textarea>
+      </div>
+      <button class="btn-send" onclick="handleSubmit(event)">Send Message</button>
+      <div class="form-success" id="form-success">
+        ✅ Thank you! Your message has been sent. We'll get back to you shortly.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img id="footer-logo" src="" alt="Logo">
+        <div class="fname">Top Jeans Ltd.</div>
+        <div class="fsub">A Sister Concern of Shom Group</div>
+        <p>Trusted garment manufacturer in Bangladesh's RMG sector. Producing world-class denim and bottom garments since 2012.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#factory">Our Factory</a></li>
+          <li><a href="index.html#washing">Washing Plant</a></li>
+          <li><a href="index.html#management">Management</a></li>
+          <li><a href="index.html#buyers">Our Buyers</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Products</h4>
+        <ul>
+          <li><a href="#">Hi-Fashion Denim Jeans</a></li>
+          <li><a href="#">Twill Bottoms</a></li>
+          <li><a href="#">Denim Jackets</a></li>
+          <li><a href="#">Cargo Pants</a></li>
+          <li><a href="#">Dress Pants</a></li>
+          <li><a href="#">Children's Bottoms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-item">
+          <span class="fi">🏢</span>
+          <span>House #31 (4th Fl), Road #29, Sector #07, Uttara, Dhaka-1230</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fi">📧</span>
+          <span>parimal@tjlbd.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fi">📞</span>
+          <span>+8801905440000</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="fi">🌐</span>
+          <span>www.tjlbd.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Top Jeans Ltd. All Rights Reserved.</span>
+    <span>A Sister Concern of Shom Group</span>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/images.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    if (typeof IMG !== 'undefined') {
+      ['nav-logo','footer-logo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.src = IMG.logo;
+      });
+    }
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const success = document.getElementById('form-success');
+    success.style.display = 'block';
+    setTimeout(() => success.style.display = 'none', 5000);
+  }
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
